@@ -29,7 +29,7 @@ class PolygonEntity(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String)
-    geom = Column(Geometry("POLYGON", srid=4326))
+    geom = Column(Geometry("POLYGON", srid=4326), nullable=False, unique=True)
 
     def add_to_db(self, session):
         """Common method for both classes"""
