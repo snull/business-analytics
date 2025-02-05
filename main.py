@@ -26,6 +26,7 @@ def home():
     st.write("- There are already locations available from these subcategories: <br>:grey[بیمارستان, تعمیرگاه خودرو, رستوران, سوپرمارکت]", unsafe_allow_html=True)
     st.write("- If you want to run analysis on other subcategories, you should first scrape data in :grey-background[🔍Scrape data] section.")
     st.write("- if you want to use the :grey-background[💼Business Suggestion] section, you should first generate heat maps :grey[(with 100% percnetile)] for the desired district in the :grey-background[🔥Generate heat maps] section.")
+    st.caption("- (There are already some heat maps generated for district 1 and 2.)")
 
 pages = {
     "Home": [
