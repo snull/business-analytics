@@ -14,11 +14,22 @@ def home():
     st.subheader('Optimize your venture: ')
     st.write('Find what to run, where to thrive, and how to succeed. 🚀')
     st.divider()
-
+    st.write("- CE Final Year Project")
+    st.caption("Project Title:")
+    st.write("- Design And Implementation Of A Business Geographic Recommendation System")
+    st.caption("Prepared By:")
+    st.write("- Shayan Golmohammadi")
+    st.caption("Supervised By:")
+    st.write("- Dr Somaye Sayari")
+    st.divider()
+    st.subheader("Help")
+    st.write("- There are already locations available from these subcategories: <br>:grey[بیمارستان, تعمیرگاه خودرو, رستوران, سوپرمارکت]", unsafe_allow_html=True)
+    st.write("- If you want to run analysis on other subcategories, you should first scrape data in :grey-background[🔍Scrape data] section.")
+    st.write("- if you want to use the :grey-background[💼Business Suggestion] section, you should first generate heat maps :grey[(with 100% percnetile)] for the desired district in the :grey-background[🔥Generate heat maps] section.")
 
 pages = {
     "Home": [
-        st.Page(home, title="Home"),
+        st.Page(home, title="Home", icon='🏠'),
     ],
     "Districts": [
         st.Page(districts.extract_tehran_districts, title="Extract districts", icon='🗺️️'),
@@ -63,4 +74,3 @@ pg.run()
 #     display_suggestions()
 # elif app_mode == 'test':
 #     test()
-
