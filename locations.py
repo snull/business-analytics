@@ -32,6 +32,12 @@ class Location(Base):
 
     def add_to_db(self, session):
         """Adds the current Location object to the database."""
+        existing = session.query(self.__class__).filter(self.__class__.token == self.token).first()
+
+        if existing:
+            logger.info(f"{self.__class__.__name__} '{self.name}' already exists. Skipping addition.")
+            return
+
         try:
             session.add(self)
             session.commit()
