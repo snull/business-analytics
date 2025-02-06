@@ -1,8 +1,9 @@
 import time
 import requests
 import streamlit as st
+from geoalchemy2.functions import ST_Equals
 from geoalchemy2.shape import to_shape
-from sqlalchemy import Column, Integer, String, Numeric
+from sqlalchemy import Column, Integer, String, Numeric, and_
 from geoalchemy2 import Geometry
 from sqlalchemy.orm import relationship
 from shapely.geometry import Polygon, Point, box, MultiPolygon
@@ -33,6 +34,17 @@ class PolygonEntity(Base):
 
     def add_to_db(self, session):
         """Common method for both classes"""
+        existing = session.query(self.__class__).filter(
+            and_(
+                self.__class__.name == self.name,
+                ST_Equals(self.__class__.geom, self.geom)
+            )
+        ).first()
+
+        if existing:
+            logger.info(f"{self.__class__.__name__} '{self.name}' already exists. Skipping addition.")
+            return
+
         try:
             session.add(self)
             session.commit()
